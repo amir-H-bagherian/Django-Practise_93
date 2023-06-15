@@ -22,4 +22,5 @@ class Memeber(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField()
     contact_number = models.BigIntegerField()
+    is_active = models.BooleanField(default=True)
     
