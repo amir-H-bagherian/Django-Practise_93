@@ -3,7 +3,7 @@ from .models import Book, Author, BorrowModel, Memeber
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ("title", "author", "publication_date",
+    list_display = ("title", "publication_date",
                     "ISBN", "availability_status")
     list_filter = ("availability_status", )
     search_fields = ("title", "author", "publication_date", "ISBN")

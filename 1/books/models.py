@@ -9,8 +9,8 @@ class Book(models.Model):
     availability_status = models.BooleanField(default=True)
     
 class BorrowModel(models.Model):
-    member = models.ForeignKey("Memeber")
-    book = models.ForeignKey("Book")
+    member = models.ForeignKey("Memeber", on_delete=models.SET_NULL, null=True)
+    book = models.ForeignKey("Book", on_delete=models.CASCADE)
     borrow_date = models.DateField()
     return_date = models.DateField()
     
