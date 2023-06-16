@@ -1,0 +1,21 @@
+{% extends 'calculator_app/base.html' %}
+
+{% block content %}
+    just do it
+    <form method="POST", action="#">
+        {% csrf_token %}
+        {% if op %}
+            <p>{{num1}} {{op}} {{num2}} = {{result}}</p>
+            <a href="{% url 'homepage' %}">Go Back</a>
+        {% else %}
+            <input type="number" name="num1">
+            <input type="number" name="num2">
+            <input type="submit" value="Submit">      
+        {% endif %}
+
+    </form>
+{% endblock content %}
+
+
+</body>
+</html>
