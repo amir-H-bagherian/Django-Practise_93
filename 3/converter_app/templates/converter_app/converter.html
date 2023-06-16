@@ -5,6 +5,7 @@
 <h1>The Text To HTML Converter</h1>
 
 <form method="post" action="/create-result/">
+    {% csrf_token %}
  <fieldset>
   <legend>Type Text To Convert: </legend>
   <label for="fname">Your HTML Text:</label>
