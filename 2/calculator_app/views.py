@@ -6,7 +6,7 @@ def home(request):
         return redirect(request.POST.get('op'))
     return render(request, 'calculator_app/home.html', {})
 
-def add_page(request):
+def addition_page(request):
     if request.method == 'POST':
         result = int(request.POST.get('num1')) + int(request.POST.get('num2'))
         context = {
