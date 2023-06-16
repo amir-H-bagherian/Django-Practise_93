@@ -1,64 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <style>
-        /* Dropdown Button */
-        .dropbtn {
-        background-color: #04AA6D;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        }
+{% extends 'calculator_app/base.html' %}
 
-        /* The container <div> - needed to position the dropdown content */
-        .dropdown {
-        position: relative;
-        display: inline-block;
-        border: solid green 5px;
-        }
+{% block style %}
+<style>
+    /* Dropdown Button */
+    .dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    }
 
-        /* Dropdown Content (Hidden by Default) */
-        .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-        }
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    border: solid green 5px;
+    }
 
-        /* Links inside the dropdown */
-        .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        }
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    }
 
-        /* Change color of dropdown links on hover */
-        .dropdown-content a:hover {background-color: #ddd;}
+    /* Links inside the dropdown */
+    .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    }
 
-        /* Show the dropdown menu on hover */
-        .dropdown:hover .dropdown-content {display: block;}
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {background-color: #ddd;}
 
-        /* Change the background color of the dropdown button when the dropdown content is shown */
-        .dropdown:hover .dropbtn {background-color: #3e8e41;}
-    </style>
-</head>
-<body>
-    <div class="dropdown">
-        <button class="dropbtn">Choose Operation</button>
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {display: block;}
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
+{% endblock %}
+
+{%block content%}
+<div class="dropdown">
+    <form action="#" method="POST">
+        {% csrf_token %}
+        <input type="text" name="op" id="chosen-operation"></input>
+        <button type="button" class="dropbtn">Choose Operation</button>
         <div class="dropdown-content">
-          <a href="/add">Addition</a>
-          <a href="/sub">Subtraction</a>
-          <a href="/mul">Multiplication</a>
-          <a href="/div">Division</a>
+            <button type="button" id="add-btn">Addition</button>
+            <button type="button" id="sub-btn">Subtraction</button>
+            <button type="button" id="mul-btn">Multiplication</button>
+            <button type="button" id="div-btn">Division</button>
         </div>
-      </div>
-</body>
-</html>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}
+
+
+{% block script %}
+<script>
+    op = document.querySelector("#chosen-operation");
+
+    function appendTextToPage(chosenOp) {
+        op.value = chosenOp
+    }
+
+    document.querySelector("#add-btn").addEventListener('click', function(){
+        appendTextToPage("Addition");
+    });
+    document.querySelector("#mul-btn").addEventListener('click', function(){
+        appendTextToPage("Multiplication");
+    });
+    document.querySelector("#sub-btn").addEventListener('click', function(){
+        appendTextToPage("Subtraction");
+    });
+    document.querySelector("#div-btn").addEventListener('click', function(){
+        appendTextToPage("Division");
+    });
+
+</script>
+{% endblock script %}
