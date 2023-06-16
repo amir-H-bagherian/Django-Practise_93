@@ -13,10 +13,11 @@ def addition_page(request):
             'op': '+',
             'result': result,
             'num1': request.POST.get('num1'),
-            'num2': request.POST.get('num2')
+            'num2': request.POST.get('num2'),
+            'opname': 'Addition',
         }
         return render(request, 'calculator_app/calc.html', context)
-    return render(request, 'calculator_app/calc.html', {'op': '+'})  
+    return render(request, 'calculator_app/calc.html', {'op': '+', 'opname': 'Addition',})  
  
 def multiplication_page(request):
     if request.method == 'POST':
@@ -25,10 +26,11 @@ def multiplication_page(request):
             'op': '*',
             'result': result,
             'num1': request.POST.get('num1'),
-            'num2': request.POST.get('num2')
+            'num2': request.POST.get('num2'),
+            'opname': 'Multiplication',
         }
         return render(request, 'calculator_app/calc.html', context)
-    return render(request, 'calculator_app/calc.html', {'op': '*'})  
+    return render(request, 'calculator_app/calc.html', {'op': '*', 'opname': 'Multiplication',})  
  
 def division_page(request):
     if request.method == 'POST':
@@ -37,10 +39,11 @@ def division_page(request):
             'op': '/',
             'result': result,
             'num1': request.POST.get('num1'),
-            'num2': request.POST.get('num2')
+            'num2': request.POST.get('num2'),
+            'opname': 'Division',
         }
         return render(request, 'calculator_app/calc.html', context)
-    return render(request, 'calculator_app/calc.html', {'op': '/'})  
+    return render(request, 'calculator_app/calc.html', {'op': '/', 'opname': 'Division',})  
  
 def subtraction_page(request):
     if request.method == 'POST':
@@ -49,7 +52,8 @@ def subtraction_page(request):
             'op': '-',
             'result': result,
             'num1': request.POST.get('num1'),
-            'num2': request.POST.get('num2')
+            'num2': request.POST.get('num2'),
+            'opname': 'Subtraction',
         }
         return render(request, 'calculator_app/calc.html', context)
-    return render(request, 'calculator_app/calc.html', {'op': '-'})  
+    return render(request, 'calculator_app/calc.html', {'op': '-', 'opname': 'Subtraction',})  
