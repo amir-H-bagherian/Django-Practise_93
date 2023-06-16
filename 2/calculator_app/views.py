@@ -16,7 +16,7 @@ def addition_page(request):
             'num2': request.POST.get('num2')
         }
         return render(request, 'calculator_app/calc.html', context)
-    return render(request, 'calculator_app/calc.html', {})  
+    return render(request, 'calculator_app/calc.html', {'op': '+'})  
  
 def multiplication_page(request):
     if request.method == 'POST':
@@ -28,7 +28,7 @@ def multiplication_page(request):
             'num2': request.POST.get('num2')
         }
         return render(request, 'calculator_app/calc.html', context)
-    return render(request, 'calculator_app/calc.html', {})  
+    return render(request, 'calculator_app/calc.html', {'op': '*'})  
  
 def division_page(request):
     if request.method == 'POST':
@@ -40,7 +40,7 @@ def division_page(request):
             'num2': request.POST.get('num2')
         }
         return render(request, 'calculator_app/calc.html', context)
-    return render(request, 'calculator_app/calc.html', {})  
+    return render(request, 'calculator_app/calc.html', {'op': '/'})  
  
 def subtraction_page(request):
     if request.method == 'POST':
@@ -52,4 +52,4 @@ def subtraction_page(request):
             'num2': request.POST.get('num2')
         }
         return render(request, 'calculator_app/calc.html', context)
-    return render(request, 'calculator_app/calc.html', {})  
+    return render(request, 'calculator_app/calc.html', {'op': '-'})  
