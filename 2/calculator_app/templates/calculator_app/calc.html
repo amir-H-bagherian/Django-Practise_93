@@ -1,18 +1,69 @@
 {% extends 'calculator_app/base.html' %}
 
+{% block style %}
+<style>
+    html, body {
+        background-color: cyan;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        background-color: cornsilk;
+        border: 3px solid violet;
+        border-radius: 5px;
+        padding: 30px 50px;
+        text-align: center;
+        width: 300px;
+    }
+
+    input {
+        width: 50px;
+        height: 20px;
+    }
+
+    .btn {
+        width: 200px;
+        height: 50px;
+        color: white;
+        background-color: black;
+        border: solid 2px grey;
+        border-radius: 10px;
+    }
+    
+    .btn:hover{
+        background-color: grey;
+    }
+
+</style>
+{% endblock %}
 {% block content %}
+<div class="container">
+    <h2>{{opname}}</h2><br>
     <form method="POST", action="#">
         {% csrf_token %}
-        {% if op %}
-            <p>{{num1}} {{op}} {{num2}} = {{result}}</p>
-            <a href="{% url 'homepage' %}">Go Back</a>
+        {% if result %}
+        <input type="number" name="num1" value="{{num1}}" readonly>
+        {{op}}
+        <input type="number" name="num2"  value="{{num2}}" readonly>
+        =
+        <input type="number"  value="{{result}}" readonly>
+        <br><br>
+        <a href="{% url 'homepage' %}"><button class="btn" type="button">Go Back</button></a>
         {% else %}
             <input type="number" name="num1">
+            {{op}}
             <input type="number" name="num2">
-            <input type="submit" value="Submit">      
+            =
+            <input type="number" readonly>
+            <br><br>
+            <input type="submit" class="btn" value="Submit">      
         {% endif %}
 
     </form>
+</div>
 {% endblock content %}
 
 
