@@ -8,8 +8,8 @@ class ToDoItem (models.Model):
     desc = models.TextField()
     
     class Meta:
-        verbose_name = _("To do Item")
-        verbose_name_plural = _("To do Items")
+        verbose_name = ("To do Item")
+        verbose_name_plural = ("To do Items")
 
     def __str__(self):
         return self.title
