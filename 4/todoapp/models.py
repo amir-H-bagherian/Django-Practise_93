@@ -27,3 +27,6 @@ class ToDoTable (models.Model):
     
     def __str__(self) -> str:
         return f"ToDos of {self.date_of_day}"
+
+    def get_absolute_url(self):
+        return reverse("todotable_detail", kwargs={"pk": self.pk})
