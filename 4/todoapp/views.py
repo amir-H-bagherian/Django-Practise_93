@@ -10,4 +10,4 @@ class HomeToDoListView(View):
         context = {
             'todos': todos
         }
-        return render(request, 'home.html', context)
+        return render(request, 'todoapp/home.html', context)
