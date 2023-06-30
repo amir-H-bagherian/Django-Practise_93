@@ -32,4 +32,5 @@ class CustomGroup(Group):
         permissions = (
             ('change_user', 'To Update User Profile'),
             ('view_user', 'To See User Details'),
+            ('delete_user', 'To Delete a User'),
         )
