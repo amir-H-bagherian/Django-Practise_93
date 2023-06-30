@@ -30,8 +30,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class CustomGroup(Group):
     class Meta:
         permissions = (
-            ('create_custom_user', 'To create custom user'),
-            ('update_custom_user', 'To update custom user'),
-            ('delete_custom_user', 'To delete custom user'),
-            ('read_custom_user', 'To get custom user'),
+            ('change_user', 'To Update User Profile'),
+            ('view_user', 'To See User Details'),
         )
