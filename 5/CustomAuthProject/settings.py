@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 AUTHENTICATION_BACKENDS = [
-    'custom_auth.backend',
+    'custom_auth.backend.phoneNumberBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 # Application definition
