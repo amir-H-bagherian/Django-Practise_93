@@ -1,6 +1,6 @@
 from django.db import models
 from .manager import CustomUserManager
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, AbstractUser, User
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, Group
 from django.core.validators import RegexValidator
 
 
@@ -26,3 +26,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self) -> str:
         return self.email
         
+        
+class CustomGroup(Group):
+    class Meta:
+        permissions = (
+            ('change_user', 'To Update User Profile'),
+            ('view_user', 'To See User Details'),
+            ('delete_user', 'To Delete a User'),
+        )
