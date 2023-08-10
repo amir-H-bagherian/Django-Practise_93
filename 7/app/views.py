@@ -10,8 +10,6 @@ from .permissions import IsOwnerOrReadOnly
 
 class PostView(APIView):
     
-    permission_classes = [IsOwnerOrReadOnly]
-    
     def get(self, request):
         posts = Post.objects.all()
         serializer = PostSerializer(instance=posts, many=True)
