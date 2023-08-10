@@ -4,6 +4,9 @@ from rest_framework.views import APIView, Response, status
 from .models import Comment, Post
 from .serializers import PostSerializer, CommentSerializer
 
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 
 class PostView(APIView):
     
@@ -12,6 +15,7 @@ class PostView(APIView):
         serializer = PostSerializer(instance=posts, many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
     
+    @method_decorator(login_required)
     def post(self, request):
         serializer = PostSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -26,6 +30,7 @@ class PostDetailView(APIView):
         serializer = PostSerializer(instance=post)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
     
+    @method_decorator(login_required)
     def put(self, request, pk):
         post =  get_object_or_404(Post, pk=pk)
         serializer = PostSerializer(instance=post, data=request.data)
@@ -33,6 +38,7 @@ class PostDetailView(APIView):
         serializer.save()
         return Response(data=serializer.data, status=status.HTTP_200_OK)
     
+    @method_decorator(login_required)
     def delete(self, request, pk):
         post =  get_object_or_404(Post, pk=pk)
         post.delete()
