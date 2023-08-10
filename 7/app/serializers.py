@@ -1,10 +1,9 @@
 from rest_framework import serializers
 from .models import Comment, Post
+from core.models import CustomUser
 
 
 class PostSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField()
-    
     class Meta:
         model = Post
         fields = '__all__'
@@ -17,6 +16,8 @@ class PostSerializer(serializers.ModelSerializer):
     def validate_content(self, value):
         if not value:
             raise serializers.ValidationError('Content must be filled!')
+        return value
+        
 
 class CommentSerializer(serializers.ModelSerializer):
     post = PostSerializer()
@@ -28,3 +29,4 @@ class CommentSerializer(serializers.ModelSerializer):
     def validate_content(self, value):
         if not value:
             raise serializers.ValidationError('Content must be filled!')
+        return value
