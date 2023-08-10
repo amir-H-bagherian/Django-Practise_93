@@ -1,3 +1,12 @@
 from django.shortcuts import render
+from rest_framework.views import Response, APIView,status
+from .serializers import CustomUserSerializer
 
-# Create your views here.
+
+class UserRegisterView(APIView):
+    
+    def post(self, request):
+        serializer = CustomUserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
