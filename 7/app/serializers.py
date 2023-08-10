@@ -3,7 +3,22 @@ from .models import Comment, Post
 from core.models import CustomUser
 
 
+
+class GetUserSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = CustomUser
+        fields = ['email',]
+        
+    def to_representation(self, instance):
+        temp = super().to_representation(instance)
+        if instance.get_full_name():
+            temp['name'] = instance.get_full_name()
+        return temp
+
+
 class PostSerializer(serializers.ModelSerializer):
+    author = GetUserSerializer(read_only=True)
     class Meta:
         model = Post
         fields = '__all__'
