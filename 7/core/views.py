@@ -3,7 +3,7 @@ from rest_framework.views import Response, APIView,status
 from .serializers import CustomUserSerializer
 
 
-class UserRegisterView(APIView):
+class CustomUserRegisterView(APIView):
     
     def post(self, request):
         serializer = CustomUserSerializer(data=request.data)
