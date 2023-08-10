@@ -6,9 +6,11 @@ from .serializers import PostSerializer, CommentSerializer
 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
+from .permissions import IsOwnerOrReadOnly
 
 class PostView(APIView):
+    
+    permission_classes = [IsOwnerOrReadOnly]
     
     def get(self, request):
         posts = Post.objects.all()
@@ -24,6 +26,8 @@ class PostView(APIView):
     
     
 class PostDetailView(APIView):
+    
+    permission_classes = [IsOwnerOrReadOnly]
     
     def get(self, request, pk):
         post =  get_object_or_404(Post, pk=pk)
