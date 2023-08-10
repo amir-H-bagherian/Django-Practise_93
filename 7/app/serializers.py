@@ -9,6 +9,11 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = '__all__'
         
+    def validate_title(self, value):
+        if Post.objects.filter(title=value).exists():
+            raise serializers.ValidationError("title must be unique!")
+        return value    
+    
     def validate_content(self, value):
         if not value:
             raise serializers.ValidationError('Content must be filled!')
